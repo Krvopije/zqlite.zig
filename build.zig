@@ -15,7 +15,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
 
-    translate_c.linkLibrary("lib/sqlite3.c", .{});
+    //translate_c.linkLibrary("lib/sqlite3.c", .{});
 
     const mod_zqlite = b.addModule("zqlite", .{
         .root_source_file = b.path("src/zqlite.zig"),
