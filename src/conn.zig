@@ -1081,12 +1081,12 @@ fn queryLast(conn: Conn) ?TestRow {
 }
 
 fn queryId(conn: Conn, id: i64) ?TestRow {
-    const row = conn.row(
+    const row = (conn.row(
         \\
         \\ select id, cint, cintn, creal, crealn,
         \\   ctext, ctextn, cblob, cblobn
         \\ from test where id = ?
-    , .{id}) catch unreachable orelse return null;
+    , .{id}) catch unreachable) orelse return null;
 
     return .{
         .row = row,
