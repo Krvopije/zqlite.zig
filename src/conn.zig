@@ -1004,7 +1004,7 @@ test "statement meta" {
     const conn = testDB();
     defer conn.tryClose() catch unreachable;
 
-    const row = conn.row("select 1 as id, 'leto' as name, null as other", .{}) catch unreachable orelse unreachable;
+    const row = (conn.row("select 1 as id, 'leto' as name, null as other", .{}) catch unreachable) orelse unreachable;
     defer row.deinit();
 
     try t.expectEqual(@as(i32, 3), row.stmt.columnCount());
